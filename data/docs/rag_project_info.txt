@@ -1,0 +1,33 @@
+RAG Chatbot Project Information
+
+Project Overview:
+This is a RAG (Retrieval Augmented Generation) chatbot project that connects Large Language Models to external documents for more reliable answers. The system can process documents in various formats and provide contextual responses based on the document content.
+
+Key Features:
+- Document processing and embedding
+- Vector storage using Chroma database
+- Conversational retrieval with memory
+- Support for multiple document formats (txt, pdf, CSV, docx)
+- Integration with multiple AI providers
+
+Technical Components:
+1. Document Loaders - Handle different file formats
+2. Text Splitters - Break documents into manageable chunks
+3. Embeddings - Convert text to vector representations
+4. Vector Store - Store and retrieve document embeddings
+5. Retrieval Chain - Find relevant documents for queries
+6. Language Model - Generate responses based on context
+
+AI Models Supported:
+- OpenAI GPT models (GPT-3.5, GPT-4)
+- Google Gemini (gemini-pro, gemini-1.5-flash, gemini-1.5-pro)
+- Hugging Face models (Mistral-7B-Instruct)
+
+Use Cases:
+- Document Q&A systems
+- Knowledge base chatbots
+- Research assistance tools
+- Customer support automation
+- Educational content interaction
+
+The system has been converted from a Streamlit web interface to a console-based application for easier deployment and reduced dependencies.
