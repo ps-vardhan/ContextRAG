@@ -1,30 +1,88 @@
-# RAG chatbot powered by Google Generative AI and Hugging Face 
+# Gemini RAG Console Chatbot
 
-## Project Overview <a name="overview"></a>
+A simple console-based RAG (Retrieval Augmented Generation) chatbot powered by Google Gemini AI.
 
-Although Large Language Models (LLMs) are powerful and capable of generating creative content, they can produce outdated or incorrect information as they are trained on static data. To overcome this limitation, Retrieval Augmented Generation (RAG) systems can be used to connect the LLM to external data and obtain more reliable answers.
+## Overview
 
-The aim of this project is to build a RAG chatbot in Langchain powered by [Google Generative AI](https://ai.google.dev/?hl=en) and [Hugging Face](https://huggingface.co/) **APIs**. You can upload documents in txt, pdf, CSV, or docx formats and chat with your data. Relevant documents will be retrieved and sent to the LLM along with your follow-up questions for accurate answers.
+This project provides a clean, console-based interface for chatting with your documents using Google Gemini AI. The system loads text documents, searches through them based on your questions, and provides contextual answers using the retrieved information.
 
-Throughout this project, we examined each component of the RAG system from document loader to conversational retrieval chain. Additionally, we developed a user interface using [streamlit](https://streamlit.io/) application.
+## Features
 
-## Installation <a name="installation"></a>
+-  **Google Gemini AI**: Powered by gemini-2.5-flash model
+-  **Document RAG**: Load and search through text documents
+-  **Conversation History**: Maintains context across the chat session
+-  **Source Attribution**: Shows which documents were used for answers
+-  **Simple Commands**: `quit`, `exit`, `clear`
+-  **No Dependencies**: Only requires Python standard library + requests
 
-This project requires Python 3 and the following Python libraries installed:
+## Quick Start
 
-`langchain` ,`langchain-openai`, `langchain-google-genai`, `chromadb`, `streamlit`, `streamlit`
+1. **Run the application**:
+   ```bash
+   python working_gemini_rag.py
+   ```
 
-The full list of requirements can be found in `requirements.txt`
+2. **Add your documents**: Place `.txt` files in the `data/docs/` directory
 
-## Instructions <a name="instructions"></a>
+3. **Start chatting**: Ask questions about your documents!
 
-To run the app locally:
+## File Structure
 
-1. Create a virtual environment: `python -m venv langchain_env`
-2. Activate the virtual environment : `.\langchainenv\Scripts\activate` on Windows.
-3. Run the following command in the directory: `cd RAG_Chatabot_Langchain`
-4. Install the required dependencies `pip install -r requirements.txt`
-5. Start the app: `streamlit run RAG_app.py`
-6. In the sidebar, select the LLM provider (OpenAI, Google Generative AI or HuggingFace), choose an LLM (GPT-3.5, GPT-4, Gemini-pro or Mistral-7B-Instruct-v0.2), adjust its parameters, and insert your API keys.
-7. Create or load a Chroma vectorstore.
-8. Chat with your documents: ask questions and get 🤖 AI answers.
+```
+├── working_gemini_rag.py          # Main application
+├── data/
+│   └── docs/
+│       └── rag_project_info.txt   # Sample document
+├── requirements.txt               # Dependencies
+└── README.md                     # This file
+```
+
+## Usage Example
+
+```
+ Welcome to Gemini RAG Console!
+ Using model: gemini-2.5-flash
+ Loaded: rag_project_info.txt
+Successfully loaded 1 documents!
+
+ Gemini RAG Chatbot Ready!
+ 1 documents loaded for context
+
+ You: What is this RAG project about?
+ Assistant: This is a RAG (Retrieval Augmented Generation) chatbot project that connects Large Language Models to external documents for more reliable answers...
+
+ Sources:
+   1. rag_project_info.txt
+```
+
+## Commands
+
+- **Chat**: Simply type your questions
+- **Clear history**: Type `clear`
+- **Exit**: Type `quit` or `exit`
+
+## Requirements
+
+- Python 3.6+
+- `requests` library
+- Google Gemini API access
+
+## API Key
+
+The application currently uses a pre-configured API key for immediate testing. For production use, you should:
+
+1. Get your own API key from: https://makersuite.google.com/app/apikey
+2. Replace the API key in `working_gemini_rag.py`
+
+## Document Format
+
+- Supports `.txt` files
+- Place documents in `data/docs/` directory
+- The system will automatically load all text files from this directory
+
+## Technical Details
+
+- **Model**: Google Gemini 2.5 Flash
+- **Search**: Simple keyword-based document retrieval
+- **Context**: Uses top 2 most relevant documents per query
+- **History**: Maintains last 4 conversation turns for context
